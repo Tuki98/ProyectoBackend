@@ -20,21 +20,27 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
+    //Para obtener usuario por email
     @GetMapping("/email/{email}")
     public ResponseEntity<Usuario> getByEmail(@PathVariable String email) {
         Optional<Usuario> usuario = usuarioService.findByEmail(email);
         return usuario.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    //Para obtener usuario por DNI
     @GetMapping("/dni/{dni}")
     public ResponseEntity<Usuario> getByDni(@PathVariable String dni) {
         Optional<Usuario> usuario = usuarioService.findByDni(dni);
         return usuario.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    //Para obtener usuario por nombre
     @GetMapping("/nombre/{nombre}")
     public ResponseEntity<Usuario> getByNombre(@PathVariable String nombre) {
         Optional<Usuario> usuario = usuarioService.findByNombre(nombre);
         return usuario.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
+
+
 }
